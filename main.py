@@ -9,7 +9,7 @@ def main(page: ft.Page):
         "REGISTRO DE EVENTOS",
         size=28,
         weight=ft.FontWeight.BOLD,
-        color=ft.Colors.BLUE,
+        color=ft.Colors.BLACK,
     )
 
     nombre = ft.TextField(
