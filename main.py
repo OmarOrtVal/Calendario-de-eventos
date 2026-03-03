@@ -1,9 +1,25 @@
 import flet as ft
+import datetime
 
 def main(page: ft.Page):
     page.title = "Mi Formulario de Eventos"
     page.padding = 20
     page.scroll = "adaptive"
+    
+    def handle_change(e: ft.Event[ft.DatePicker]):
+        page.add(ft.Text(f"Date changed: {e.control.value.strftime('%m/%d/%Y')}"))
+
+    def handle_dismissal(e: ft.Event[ft.DialogControl]):
+        page.add(ft.Text("DatePicker dismissed"))
+
+    today = datetime.datetime.now()
+
+    d = ft.DatePicker(
+        first_date=datetime.datetime(year=today.year - 1, month=1, day=1),
+        last_date=datetime.datetime(year=today.year + 1, month=today.month, day=20),
+        on_change=handle_change,
+        on_dismiss=handle_dismissal,
+    )
 
     titulo = ft.Text(
         "REGISTRO DE EVENTOS",
@@ -40,7 +56,15 @@ def main(page: ft.Page):
         label="¿Requiere inscripción previa?",
         value=False,
     )
-
+    
+    page.add(
+        ft.Button(
+            content="Pick date",
+            icon=ft.Icons.CALENDAR_MONTH,
+            on_click=lambda e: page.show_dialog(d),
+        )
+    )
+    
     duracion = ft.Slider(
         min=1,
         max=8,
@@ -92,6 +116,9 @@ def main(page: ft.Page):
             padding=20,
             shape=ft.RoundedRectangleBorder(radius=12),
         ),
+    )
+    ft.ListView(
+    controls=[ft.Text(f"Item {i}") for i in range(1, 6)],
     )
 
     page.add(
