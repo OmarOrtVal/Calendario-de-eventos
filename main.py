@@ -2,6 +2,8 @@ import flet as ft
 
 def main(page: ft.Page):
     page.title = "Mi Formulario de Eventos"
+    page.padding = 20
+    page.scroll = "adaptive"
 
     titulo = ft.Text(
         "REGISTRO DE EVENTOS",
