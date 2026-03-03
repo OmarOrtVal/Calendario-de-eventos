@@ -12,7 +12,6 @@ def main(page: ft.Page):
 
     nombre = ft.TextField(
         label="Nombre del evento",
-        hint_text="Ejemplo: Conferencia de Python",
         width=400,
     )
 
